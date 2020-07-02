@@ -1,5 +1,5 @@
 import numpy as np
-### # TODO: Connections
+###     # TODO: Connections
 # # TODO: inputs/outputs
 # TODO: training using cost function
 
