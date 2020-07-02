@@ -3,15 +3,12 @@ import numpy as np
 # # TODO: inputs/outputs
 # TODO: training using cost function
 
-class network(object):
+class Network(object):
     """docstring for network."""
 
     def __init__(self, arg):
         super(network, self).__init__()
         self.arg = arg
-
-
-# def network():
 
 # network = lambda node :
 def activation(n): #relu max(0,x)
@@ -24,10 +21,6 @@ node = lambda n=0: activation(n)
 
 
 layer = lambda n: [node for i in range(n)]
-
-print (layer(3))
-
-print(node(5))
 
 
 def cost(target, actual): # mean square error
