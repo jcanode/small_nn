@@ -1,4 +1,5 @@
 import numpy as np
+
 ###     # TODO: Connections
 # # TODO: inputs/outputs
 # TODO: training using cost function
@@ -70,6 +71,49 @@ def relu(n):
         return n;
 
 """End of Activation functions"""
+
+def train_step(model, data, t):
+        lables = data.lables
+        prediction = model.outputs
+        loss = cost(lables,prediction)
+        t = t+1
+        optmizer(model, data, loss, t);
+        return model, loss;
+
+def opmizer(model, data, loss,t): # Defult adom
+#params[weights,bias], vs, sqrs, learning_rate, batch_size, t
+    alpha = 0.001 # step size
+    beta1 = 0.9 # decay rate
+    beta2=0.999
+    epsilon=(10.0e-8)
+    # theta = intial
+    M0 = [0]    #initalize 1st vector
+    M1 = [0]    #initalize 2nd vector
+        for param, v, sqr in zip(params,vs,sqrs):
+                g = Gradient_theta / data.batch_size # get gradient wrt stoacstic objective at t
+                v[:] = beta1* v (1.0-beta1) * g # update first movement estimetn
+                sqr[:] = beta2 * sqr  + (1.0-beta2) * (g ** 2) # vt = (1-beta2) * for i in range t:
+                v_bias_corr = v/(1.0-beta1^t)
+                sqr_bias_coor = sqr/(1.0-beta2^t)   #compute bias
+                Theta_t = alpha * (sqr/(sqrt(sqr_bias_coor)+epsilon)) # update parameters
+        return Theta_t
+
+
+def vt(t):
+    s = 0
+    for i in range(t):
+        n = np.dot(beta2^(t-i),g[i]^2)
+        s=s+n;
+    vt = (1-beta2) *s
+    return vt;
+
+
+def train(epochs, model, data):
+    t = 0
+    for epochs in range():
+        model, loss = train_step(model, data, t)
+        print(loss)
+    return model;
 
 node = lambda n=0: activation(n)
 
