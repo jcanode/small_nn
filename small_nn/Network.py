@@ -10,12 +10,66 @@ class Network(object):
         super(network, self).__init__()
         self.arg = arg
 
-# network = lambda node :
-def activation(n): #relu max(0,x)
+
+def activation(n, func):
+    if (func == "relu"):
+        a = relu(n)
+        return a;
+    elif (func == "identity"):
+        a = identity(n)
+        return a;
+    elif (func == "binary"):
+        a = Binary(n)
+        return a;
+    elif (func == "logistic"):
+        a = Sigmoid(n)
+        return a;
+    elif (func == "lrelu"):
+        a = leakyRelu(n);
+        return a;
+    elif (func == "sine"):
+        a = sine(n);
+        return a;
+    elif (func == "softmax"):
+        a = softmax(n);
+        return a;
+
+
+"""Activation functions"""
+def softmax(n):
+    a = np.exp(n)/np.sum(np.exp(a))
+    return a;
+
+def sine(n):
+    r = np.sin(n);
+    return r;
+
+def leakyRelu(n):
+    if (n<0):
+        return 0.01*n;
+    else:
+        return n;
+
+def Sigmoid(n):
+    r = 1.0/(1.0+np.exp(-n))
+    return r;
+
+def Binary(n):
+    if (n < 0):
+        return 0;
+    else:
+        return 1;
+
+def identity(n):
+    return n;
+
+def relu(n):
     if (n<=0):
         return 0;
     else:
         return n;
+
+"""End of Activation functions"""
 
 node = lambda n=0: activation(n)
 
