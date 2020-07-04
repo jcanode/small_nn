@@ -13,62 +13,42 @@ class Network(object):
 
 
 def activation(n, func):
-    if (func == "relu"):
-        a = relu(n)
-        return a;
-    elif (func == "identity"):
-        a = identity(n)
-        return a;
-    elif (func == "binary"):
-        a = Binary(n)
-        return a;
-    elif (func == "logistic"):
-        a = Sigmoid(n)
-        return a;
-    elif (func == "lrelu"):
-        a = leakyRelu(n);
-        return a;
-    elif (func == "sine"):
-        a = sine(n);
-        return a;
-    elif (func == "softmax"):
-        a = softmax(n);
-        return a;
+    return {
+        "relu": relu,
+        "identity": identity,
+        "binary": Binary,
+        "logistic": Sigmoid,
+        "lrelu": leakyRelu,
+        "sine": sine,
+        "softmax": softmax
+    }.get(func, relu)(n) # default activation is relu
 
 
 """Activation functions"""
 def softmax(n):
-    a = np.exp(n)/np.sum(np.exp(a))
-    return a;
+    return np.exp(n) / np.sum(np.exp(a))
 
 def sine(n):
-    r = np.sin(n);
-    return r;
+    return np.sin(n)
 
 def leakyRelu(n):
-    if (n<0):
-        return 0.01*n;
-    else:
-        return n;
+    return (0.01 if n < 0 else 1) * n
 
 def Sigmoid(n):
-    r = 1.0/(1.0+np.exp(-n))
-    return r;
+    return 1.0 / (1.0 + np.exp(-n))
 
 def Binary(n):
+    return 0 if n < 0 else 1
     if (n < 0):
-        return 0;
+        return 0
     else:
-        return 1;
+        return 1
 
 def identity(n):
-    return n;
+    return n
 
 def relu(n):
-    if (n<=0):
-        return 0;
-    else:
-        return n;
+    return 0 if n <= 0 else n
 
 """End of Activation functions"""
 
