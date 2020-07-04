@@ -77,26 +77,47 @@ def train_step(model, data, t):
         prediction = model.outputs
         loss = cost(lables,prediction)
         t = t+1
-        optmizer(model, data, loss, t);
+        optmizer(model, data, loss);
         return model, loss;
 
-def opmizer(model, data, loss,t): # Defult adom
+def optimize(model, data, loss): # Defult adom
 #params[weights,bias], vs, sqrs, learning_rate, batch_size, t
-    alpha = 0.001 # step size
+    alpha = 0.001 # step size/learning_rate
     beta1 = 0.9 # decay rate
     beta2=0.999
     epsilon=(10.0e-8)
     # theta = intial
+    _m = 0
+    _v = 0
     M0 = [0]    #initalize 1st vector
     M1 = [0]    #initalize 2nd vector
+    # t = 0       #initalize timestamp
         for param, v, sqr in zip(params,vs,sqrs):
-                g = Gradient_theta / data.batch_size # get gradient wrt stoacstic objective at t
-                v[:] = beta1* v (1.0-beta1) * g # update first movement estimetn
-                sqr[:] = beta2 * sqr  + (1.0-beta2) * (g ** 2) # vt = (1-beta2) * for i in range t:
-                v_bias_corr = v/(1.0-beta1^t)
-                sqr_bias_coor = sqr/(1.0-beta2^t)   #compute bias
-                Theta_t = alpha * (sqr/(sqrt(sqr_bias_coor)+epsilon)) # update parameters
+                _m += (1.0 - beta1) * (g - _m)
+                _v += (1.0 - beta2) * (g**2 - _v)
+                _m = _m/(1/beta1**t)
+                _v = _v/(1-beta2**t)
+                Theta_t = -alpha *_m / (np.sqrt(_v)+epsilon)
+
+
+                # g = Gradient_theta / data.batch_size # get gradient wrt stoacstic objective at t
+                # v[:] = beta1 * v + (1.0-beta1) * g # update first movement estimetn
+                # sqr[:] = beta2 * sqr  + (1.0-beta2) * (g ** 2) # vt = (1-beta2) * for i in range t:
+                # v_bias_corr = v/(1.0-beta1^t)
+                # sqr_bias_coor = sqr/(1.0-beta2^t)   #compute bias
+                # Theta_t = alpha * (sqr/(sqrt(sqr_bias_coor)+epsilon)) # update parameters
         return Theta_t
+
+def SGD(model, data):
+    learning_rate = 0.001
+    epochLoss = []
+    for batch in data.batches:
+        preds = Sigmoid(np.dot(data.batch.x, w))
+        error = preds-data.batch.y
+        loss = cost(preds, data.batch.y)
+        epochLoss.append(loss)
+        gradient =  np.dot(np.transpose(data.batch.x), error) / data.batch.x.shape[]
+        W += learning_rate * gradient
 
 
 def vt(t):
@@ -109,9 +130,9 @@ def vt(t):
 
 
 def train(epochs, model, data):
-    t = 0
-    for epochs in range():
-        model, loss = train_step(model, data, t)
+    for epoch in range(epochs):
+        loss = 0
+        # model, loss = train_step(model, data)
         print(loss)
     return model;
 
