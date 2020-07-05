@@ -1,7 +1,7 @@
 import numpy as np
-import layer
 
-class model(object):
+
+class models(object):
     """docstring for model."""
 
     def __init__(self, arg):
@@ -9,3 +9,7 @@ class model(object):
         self.arg = arg
 
 def build():
+    raise NotImplementedError
+
+def add(layer):
+    raise NotImplementedError

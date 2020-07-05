@@ -11,3 +11,5 @@ class batch():
     def __init__(self, arg):
         super(batch, self).__init__()
         self.arg = arg
+    x = []
+    y = []

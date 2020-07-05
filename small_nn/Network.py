@@ -92,11 +92,12 @@ def SGD(model, data):
     learning_rate = 0.001
     epochLoss = []
     for batch in data.batches:
+        y = data.batch.y
         preds = Sigmoid(np.dot(data.batch.x, w))
-        error = preds-data.batch.y
-        loss = cost(preds, data.batch.y)
+        error = preds-y
+        loss = cost(preds, y)
         epochLoss.append(loss)
-        gradient =  np.dot(np.transpose(data.batch.x), error) / data.batch.x.shape[]
+        gradient =  np.dot(np.transpose(data.batch.x), error) / data.batch.x.shape[0]
         W += learning_rate * gradient
 
 

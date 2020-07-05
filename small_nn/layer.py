@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class layer(object):
+class layer():
     """docstring for layer."""
 
     def __init__(self, arg):
@@ -9,11 +9,13 @@ class layer(object):
         self.arg = arg
 
 def dense():
-
+    raise NotImplementedError
 
 def conv():
-
+    raise NotImplementedError
 
 def input():
+    raise NotImplementedError
 
 def output():
+    raise NotImplementedError

@@ -1,9 +1,9 @@
 import setuptools
-from setuptools import setup, find_namespace_packages
+
 
 
 setuptools.setup(
-    name="small_nn-jcanode",
+    name="small_nn-model-jcanode",
     version="0.0.1",
     author="Justin Canode",
     author_email="jcanode@my.gcu.edu",
