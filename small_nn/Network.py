@@ -4,7 +4,7 @@ import numpy as np
 # # TODO: inputs/outputs
 # TODO: training using cost function
 
-class Network(object):
+class network(object):
     """docstring for network."""
 
     def __init__(self, arg):
@@ -72,12 +72,12 @@ def optimize(model, data, loss): # Defult adom
     M0 = [0]    #initalize 1st vector
     M1 = [0]    #initalize 2nd vector
     # t = 0       #initalize timestamp
-        for param, v, sqr in zip(params,vs,sqrs):
-                _m += (1.0 - beta1) * (g - _m)
-                _v += (1.0 - beta2) * (g**2 - _v)
-                _m = _m/(1/beta1**t)
-                _v = _v/(1-beta2**t)
-                Theta_t = -alpha *_m / (np.sqrt(_v)+epsilon)
+    for param, v, sqr in zip(params,vs,sqrs):
+            _m += (1.0 - beta1) * (g - _m)
+            _v += (1.0 - beta2) * (g**2 - _v)
+            _m = _m/(1/beta1**t)
+            _v = _v/(1-beta2**t)
+            Theta_t = -alpha *_m / (np.sqrt(_v)+epsilon)
 
 
                 # g = Gradient_theta / data.batch_size # get gradient wrt stoacstic objective at t
@@ -86,7 +86,7 @@ def optimize(model, data, loss): # Defult adom
                 # v_bias_corr = v/(1.0-beta1^t)
                 # sqr_bias_coor = sqr/(1.0-beta2^t)   #compute bias
                 # Theta_t = alpha * (sqr/(sqrt(sqr_bias_coor)+epsilon)) # update parameters
-        return Theta_t
+    return Theta_t
 
 def SGD(model, data):
     learning_rate = 0.001

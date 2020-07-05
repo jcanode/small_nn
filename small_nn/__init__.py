@@ -1,1 +1,1 @@
-from small_nn import Network
+from small_nn import network
