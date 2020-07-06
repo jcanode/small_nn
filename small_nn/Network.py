@@ -60,7 +60,7 @@ def train_step(model, data, t):
         optmizer(model, data, loss);
         return model, loss;
 
-def optimize(model, data, loss): # Defult adom
+def optimize(model, data, loss): # Defult adom,
 #params[weights,bias], vs, sqrs, learning_rate, batch_size, t
     alpha = 0.001 # step size/learning_rate
     beta1 = 0.9 # decay rate
