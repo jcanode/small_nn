@@ -1,5 +1,7 @@
 # Small NN
 
+[![Generic badge](https://img.shields.io/badge/pypi%20package-v0.0.1-brightgreen.svg)](https://pypi.org/project/small-nn-jcanode/)
+
 A small neural network library written in python
 
 ## Installation
