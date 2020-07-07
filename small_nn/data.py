@@ -5,6 +5,7 @@ class data():
         super(data, self).__init__()
         self.arg = arg
 
+
 class batch():
     """docstring for batch."""
 
@@ -13,3 +14,14 @@ class batch():
         self.arg = arg
     x = []
     y = []
+
+    def split(data, type):
+        raise NotImplementedError
+
+def load(data, numbbaches): # split data into batches
+    type = data.type;
+    dataLength = len(data)
+    segmentSize = datalength/numbacches
+    batchs = {}
+    for i in range(0, dataLength, segmentSize):
+        batchs["batch{0}".format(i)] = batch(data[i:i+segmentSize], type)
